@@ -15,8 +15,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "appusers")
 public class AppUser implements UserDetails{
 	
 	
@@ -37,6 +39,7 @@ public class AppUser implements UserDetails{
 	private AppUserRole appUserRole;
 	private boolean locked;
 	private boolean enabled;
+	private Integer manager_id;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -56,25 +59,21 @@ public class AppUser implements UserDetails{
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
 		return !locked;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return enabled;
 	}
 	
@@ -102,9 +101,10 @@ public class AppUser implements UserDetails{
 		this.email = email;
 	}
 
+	
 	@Override
 	public int hashCode() {
-		return Objects.hash(appUserRole, email, enabled, id, locked, name, password, username);
+		return Objects.hash(appUserRole, email, enabled, id, locked, manager_id, name, password, username);
 	}
 
 	@Override
@@ -117,7 +117,8 @@ public class AppUser implements UserDetails{
 			return false;
 		AppUser other = (AppUser) obj;
 		return appUserRole == other.appUserRole && Objects.equals(email, other.email) && enabled == other.enabled
-				&& Objects.equals(id, other.id) && locked == other.locked && Objects.equals(name, other.name)
+				&& Objects.equals(id, other.id) && locked == other.locked
+				&& Objects.equals(manager_id, other.manager_id) && Objects.equals(name, other.name)
 				&& Objects.equals(password, other.password) && Objects.equals(username, other.username);
 	}
 
@@ -126,7 +127,7 @@ public class AppUser implements UserDetails{
 	}
 	
 	public AppUser(String name, String username, String email, String password, AppUserRole appUserRole, boolean locked,
-			boolean enabled) {
+			boolean enabled, Integer manager_id) {
 		super();
 		this.name = name;
 		this.username = username;
@@ -135,6 +136,15 @@ public class AppUser implements UserDetails{
 		this.appUserRole = appUserRole;
 		this.locked = locked;
 		this.enabled = enabled;
+		this.manager_id = manager_id;
+	}
+
+	public Integer getManager_id() {
+		return manager_id;
+	}
+
+	public void setManager_id(Integer manager_id) {
+		this.manager_id = manager_id;
 	}
 	
 	

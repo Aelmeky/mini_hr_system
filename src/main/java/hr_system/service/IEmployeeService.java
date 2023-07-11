@@ -1,15 +1,12 @@
 package hr_system.service;
 
-import java.time.LocalTime;
 import java.util.List;
 
-import hr_system.entity.Employee;
+import hr_system.entity.AppUser;
+import hr_system.entity.Tasks;
 
 public interface IEmployeeService {
-	List<Employee> getAllEmployees();
-	Employee saveEmplyee(Employee employee);
-	Employee updateEmployee(Employee employee);
-	Employee getEmployeeById(Integer id);
-	void deleteEmployeeById(Integer id);
-	void requestLeave(LocalTime time);
+	List<AppUser> getAllEmployees();
+	void addEmployeeById(Integer id);
+	List<Tasks> getAllTasksNames(Integer id);
 }
