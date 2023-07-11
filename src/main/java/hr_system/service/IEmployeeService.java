@@ -9,4 +9,6 @@ public interface IEmployeeService {
 	List<AppUser> getAllEmployees();
 	void addEmployeeById(Integer id);
 	List<Tasks> getAllTasksNames(Integer id);
+	Tasks saveTasks(Tasks task); 
+	List<AppUser> getAdminEmployees(Integer id);
 }

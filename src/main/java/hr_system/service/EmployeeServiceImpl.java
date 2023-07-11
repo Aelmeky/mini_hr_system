@@ -2,14 +2,12 @@ package hr_system.service;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import hr_system.entity.AppUser;
 import hr_system.entity.Tasks;
 import hr_system.repo.IEmployeeRepository;
 import hr_system.repo.ITasksRepo;
-import jakarta.persistence.Id;
 
 @Service
 public class EmployeeServiceImpl implements IEmployeeService {
@@ -43,6 +41,18 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	public void addEmployeeById(Integer id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public Tasks saveTasks(Tasks task) {
+		return tasksrepo.save(task);
+	}
+
+
+	@Override
+	public List<AppUser> getAdminEmployees(Integer id) {
+		return employeerepo.getAdminEmployees(id);
 	}
 
 	

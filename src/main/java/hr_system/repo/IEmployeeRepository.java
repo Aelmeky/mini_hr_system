@@ -15,4 +15,6 @@ import hr_system.entity.Tasks;
 @Transactional
 public interface IEmployeeRepository extends JpaRepository<AppUser,Integer>{
 	Optional<AppUser> findByEmail(String email);
+	@Query(value = "SELECT * FROM appusers WHERE manager_id = ?1", nativeQuery=true)
+	List<AppUser> getAdminEmployees(Integer id);
 }

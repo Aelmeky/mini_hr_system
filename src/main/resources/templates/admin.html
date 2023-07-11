@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Task management System</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+<div class = "col-lg-3">
+				<a th:href = "@{}" class = "btn btn-primary btn-sm mb-3"> Add Employee</a>
+			</div>
+
+<table>
+    <thead>
+        <tr>
+            <th> Employee id </th>
+            <th> Employee name </th>
+			<th> Employee email </th>
+            <th> Manager id </th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr th:if="${admins.empty}">
+            <td colspan="2"> No Employees yet </td>
+        </tr>
+        <tr th:each="admin : ${admins}">
+            <td><span th:text="${admin.id}"> id </span></td>
+            <td><span th:text="${admin.name}"> name </span></td>
+			<td><span th:text="${admin.email}"> email </span></td>
+			<td><span th:text="${admin.manager_id}"> manager id </span></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
