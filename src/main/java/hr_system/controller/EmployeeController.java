@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import hr_system.entity.AppUser;
 import hr_system.entity.Tasks;
 import hr_system.service.IEmployeeService;
 
-@Controller
+@RestController
 public class EmployeeController {
 	
 	private IEmployeeService employeeService;
@@ -21,6 +22,11 @@ public class EmployeeController {
 		super();
 		this.employeeService = employeeService;
 	}
+	@GetMapping("")
+	public String hello() {
+		return "Helloword";
+	}
+	
 	
 	@GetMapping("/employees/tasks/{id}")
 	public List<Tasks> listTasks(@PathVariable Integer id) {
